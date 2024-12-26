@@ -3,3 +3,5 @@
     @section('content')
         @include('default')
     @endsection
+
+    

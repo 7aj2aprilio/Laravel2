@@ -21,7 +21,6 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-
 Route::get('home', [HomeController::class, 'index'])->name('home')->Middleware('auth');
 
 Route::get('profile', ProfileController::class)->name('profile')->Middleware('auth');
@@ -31,8 +30,6 @@ Route::resource('employees', EmployeeController::class)->Middleware('auth');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 
 Route::get('/local-disk', function() {
     Storage::disk('local')->put('local-example.txt', 'This is local example content');
@@ -113,3 +110,9 @@ Route::get('/delete-public-file', function(Request $request) {
 Route::get('download-file/{employeeId}', [EmployeeController::class, 'downloadFile'])->name('employees.downloadFile');
 
 Route::get('/employees/{id}/download', [EmployeeController::class, 'downloadFile'])->name('employees.download');
+
+Route::get('getEmployees', [EmployeeController::class, 'getData'])->name('employees.getData');
+
+
+Route::get('exportExcel', [EmployeeController::class, 'exportExcel'])->name('employees.exportExcel');
+Route::get('exportPdf', [EmployeeController::class, 'exportPdf'])->name('employees.exportPdf');
